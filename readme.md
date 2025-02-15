@@ -1,6 +1,6 @@
 # Mermaid to Draw.io Converter
 
-A simple process that converts Mermaid flowchart diagram code to Draw.io flwochart diagrams. Built with Gradio, this tool provides an easy way to visualize and render your Mermaid diagrams.
+A simple process that converts Mermaid flowchart diagram code to Draw.io flowchart diagrams. Built with Gradio, this tool provides an easy way to visualize and render your Mermaid diagrams.
 
 ## Features
 
