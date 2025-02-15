@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 import zlib
 import re
 from collections import defaultdict, deque
+import requests
 
 def parse_mermaid(mermaid_code):
     """
@@ -217,8 +218,16 @@ def render_mermaid_and_drawio(mermaid_code):
     """
 
     # Load mermaid.min.js for local rendering
-    with open("mermaid.min.js", "rb") as f:
-        mermaid_js_raw = f.read()
+
+    mermaid_js_path=('https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.2.4/mermaid.min.js')
+    try:
+        with open("mermaid.min.js", "rb") as f:
+            mermaid_js_raw = f.read()
+    except:
+        response = requests.get(mermaid_js_path, stream=True)  # stream=True for large files
+    
+        mermaid_js_raw = response.content  # Use response.content for binary data    
+    
     mermaid_js_b64 = base64.b64encode(mermaid_js_raw).decode("utf-8")
 
     html_template = f"""
@@ -304,4 +313,3 @@ iface = gr.Interface(
 )
 
 iface.launch(share=True)
-
